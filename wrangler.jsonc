@@ -1,0 +1,8 @@
+{
+  "name": "damian-hryniuk-site",
+  "compatibility_date": "2026-09-28",
+  "assets": {
+    "directory": "./dist"
+  },
+  "previews": {}
+}
