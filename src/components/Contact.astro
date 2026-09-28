@@ -1,0 +1,19 @@
+---
+import SectionLabel from './SectionLabel.astro';
+import { site } from '../config';
+---
+<section id="kontakt" class="contact section-observe">
+  <div class="contact__image" aria-hidden="true"></div>
+  <div class="contact__shade" aria-hidden="true"></div>
+  <div class="shell contact__inner">
+    <div class="contact__copy reveal">
+      <SectionLabel number="06" label="KONTAKT" />
+      <h2>Porozmawiajmy<br/>o <span>możliwościach.</span></h2>
+      <p>Cenię konkretne rozmowy, wartościowe relacje i ludzi, którzy mają coś ciekawego do powiedzenia.</p>
+      <p>Na co dzień skupiam się przede wszystkim na Factech i prowadzonych przez nas działaniach, ale pozostaję otwarty na nowe pomysły, interesujące przedsięwzięcia oraz współpracę z ludźmi, z którymi warto stworzyć coś wartościowego.</p>
+      <p>Jeżeli widzisz przestrzeń do rozmowy — biznesowej, technologicznej, branżowej lub po prostu chcesz się poznać — napisz.</p>
+      {site.email ? <a class="button button--primary" href={`mailto:${site.email}`}>Napisz do mnie →</a> : <span class="button button--primary button--disabled" title="Adres e-mail do uzupełnienia przed publikacją">Napisz do mnie →</span>}
+      <p class="contact__note">Nie szukam możliwości na siłę. Ale zawsze warto być otwartym na te właściwe.</p>
+    </div>
+  </div>
+</section>

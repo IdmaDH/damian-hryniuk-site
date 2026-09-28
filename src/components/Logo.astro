@@ -1,0 +1,12 @@
+---
+const { compact = false } = Astro.props;
+---
+<a class:list={["brand", { compact }]} href="#top" aria-label="Damian Hryniuk — strona główna">
+  <svg class="brand__mark" viewBox="0 0 88 52" role="img" aria-label="DH">
+    <path d="M8 8h22c14 0 24 8 24 18s-10 18-24 18H8V8Z" fill="none" stroke="currentColor" stroke-width="4.5"/>
+    <path d="M48 18c5 0 8 7 12 7h18" fill="none" stroke="var(--accent)" stroke-width="5" stroke-linecap="round"/>
+    <path d="M78 7v38" fill="none" stroke="var(--accent)" stroke-width="5" stroke-linecap="square"/>
+  </svg>
+  {!compact && <span class="brand__divider" aria-hidden="true"></span>}
+  {!compact && <span class="brand__name">DAMIAN HRYNIUK</span>}
+</a>

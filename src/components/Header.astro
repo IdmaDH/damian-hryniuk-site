@@ -1,0 +1,31 @@
+---
+import Logo from './Logo.astro';
+---
+<header class="site-header" data-header>
+  <div class="site-header__inner shell">
+    <Logo />
+    <nav class="desktop-nav" aria-label="Główna nawigacja">
+      <a href="#o-mnie">O mnie</a>
+      <a href="#przedsiewziecia">Przedsięwzięcia</a>
+      <a href="#moja-droga">Moja droga</a>
+      <a href="#jak-pracuje">Jak pracuję</a>
+      <a href="#poza-biznesem">Poza biznesem</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <button class="menu-toggle" type="button" aria-label="Otwórz menu" aria-expanded="false" data-menu-toggle>
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" data-mobile-menu aria-hidden="true">
+    <div class="mobile-menu__inner shell">
+      <nav aria-label="Nawigacja mobilna">
+        <a href="#o-mnie">O mnie</a>
+        <a href="#przedsiewziecia">Przedsięwzięcia</a>
+        <a href="#moja-droga">Moja droga</a>
+        <a href="#jak-pracuje">Jak pracuję</a>
+        <a href="#poza-biznesem">Poza biznesem</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+    </div>
+  </div>
+</header>

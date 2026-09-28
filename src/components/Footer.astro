@@ -1,0 +1,15 @@
+---
+import Logo from './Logo.astro';
+import { site } from '../config';
+---
+<footer class="footer">
+  <div class="shell footer__inner">
+    <Logo />
+    <nav aria-label="Nawigacja w stopce"><a href="#o-mnie">O mnie</a><a href="#przedsiewziecia">Przedsięwzięcia</a><a href="#moja-droga">Historia</a><a href="#kontakt">Kontakt</a></nav>
+    <div class="footer__social">
+      {site.linkedin && <a href={site.linkedin} target="_blank" rel="noreferrer">in</a>}
+      {site.email && <a href={`mailto:${site.email}`}>✉</a>}
+    </div>
+  </div>
+  <div class="shell footer__legal">© {new Date().getFullYear()} Damian Hryniuk</div>
+</footer>
