@@ -2378,3 +2378,23 @@ strong{color:var(--text)}
     line-height:1;
   }
 }
+
+/* Stabilny podział nagłówka i portret ograniczony do obszaru tekstu oraz CTA. */
+@media (max-width:860px){
+  .hero-final h1 span{display:block;width:fit-content}
+  .hero-final__portrait{
+    height:clamp(380px,108vw,480px);
+    max-height:calc(100% - 48px);
+  }
+}
+
+/* Szersze ekrany mobilne: tekst po lewej, portret po prawej. */
+@media (min-width:561px) and (max-width:860px){
+  .hero-final__portrait{
+    width:48%;
+    right:-8px;
+  }
+  .hero-final__portrait img{transform:translate3d(8%,0,0)}
+  .hero-final__lead{max-width:60%}
+  .hero-final__actions{width:60%;max-width:380px}
+}
