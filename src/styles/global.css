@@ -2341,3 +2341,40 @@ strong{color:var(--text)}
 @media (max-width:860px){
   .hero-final__aside blockquote br{display:none}
 }
+
+/* Mobile: czytelny opis i CTA, pełne hasło oraz miękkie zakończenie portretu. */
+@media (max-width:860px){
+  .hero-final__eyebrow{
+    max-width:none;
+    white-space:nowrap;
+    font-size:clamp(.5rem,2.15vw,.65rem);
+    letter-spacing:.15em;
+  }
+  .hero-final__eyebrow-slash,
+  .hero-final__eyebrow-tail{display:inline}
+  .hero-final__portrait{
+    mask-image:linear-gradient(to bottom,#000 0%,#000 65%,transparent 100%);
+    -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 65%,transparent 100%);
+  }
+  .hero-final__lead{
+    position:relative;
+    isolation:isolate;
+  }
+  .hero-final__lead::before{
+    content:'';
+    position:absolute;
+    inset:-8px -4px;
+    z-index:-1;
+    pointer-events:none;
+    background:rgba(3,7,12,.78);
+    filter:blur(10px);
+  }
+  .hero-final .button--ghost{background:rgba(12,8,6,.94)}
+  .hero-final .button--ghost:hover{background:rgba(35,20,13,.96)}
+  .hero-final__aside blockquote{margin-top:38px}
+  .hero-final__aside blockquote>span{
+    top:0;
+    font-size:2.3rem;
+    line-height:1;
+  }
+}
