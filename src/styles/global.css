@@ -2293,3 +2293,42 @@ strong{color:var(--text)}
     -webkit-tap-highlight-color:transparent;
   }
 }
+
+/* Mobile: portret za nagłówkiem, a cytat i oś bez pustego rzędu zdjęcia. */
+@media (max-width:860px){
+  .hero-final__stage{
+    grid-template-areas:"copy" "quote" "flow";
+    isolation:isolate;
+  }
+  .hero-final__portrait{
+    grid-area:copy;
+    position:absolute;
+    top:48px;
+    right:-16px;
+    width:76%;
+    height:clamp(380px,108vw,540px);
+    margin:0;
+    align-self:start;
+    align-items:flex-start;
+    overflow:hidden;
+    z-index:2;
+    mask-image:linear-gradient(to right,transparent,#000 38%),linear-gradient(to bottom,#000 36%,transparent 100%);
+    mask-composite:intersect;
+    -webkit-mask-image:linear-gradient(to right,transparent,#000 38%),linear-gradient(to bottom,#000 36%,transparent 100%);
+    -webkit-mask-composite:source-in;
+  }
+  .hero-final__portrait img{
+    height:100%;
+    transform:translate3d(20%,0,0);
+  }
+  .hero-final__copy{
+    text-shadow:0 2px 12px rgba(0,0,0,.85);
+  }
+  .hero-final__actions{text-shadow:none}
+  .hero-final__aside blockquote{
+    grid-area:quote;
+    width:auto;
+    max-width:320px;
+    margin:34px 0 24px 2px;
+  }
+}
