@@ -2312,23 +2312,32 @@ strong{color:var(--text)}
     align-items:flex-start;
     overflow:hidden;
     z-index:2;
-    mask-image:linear-gradient(to right,transparent,#000 38%),linear-gradient(to bottom,#000 36%,transparent 100%);
-    mask-composite:intersect;
-    -webkit-mask-image:linear-gradient(to right,transparent,#000 38%),linear-gradient(to bottom,#000 36%,transparent 100%);
-    -webkit-mask-composite:source-in;
+    mask-image:none;
+    -webkit-mask-image:none;
   }
   .hero-final__portrait img{
     height:100%;
     transform:translate3d(20%,0,0);
+    mask-image:none;
+    -webkit-mask-image:none;
   }
   .hero-final__copy{
     text-shadow:0 2px 12px rgba(0,0,0,.85);
   }
+  .hero-final h1{font-size:clamp(3rem,15.5vw,4.5rem)}
   .hero-final__actions{text-shadow:none}
   .hero-final__aside blockquote{
     grid-area:quote;
-    width:auto;
-    max-width:320px;
-    margin:34px 0 24px 2px;
+    width:100%;
+    max-width:none;
+    margin:30px 0 18px;
+    padding-left:32px;
+    font-size:1rem;
+    line-height:1.55;
+    text-wrap:balance;
   }
+}
+
+@media (max-width:860px){
+  .hero-final__aside blockquote br{display:none}
 }
