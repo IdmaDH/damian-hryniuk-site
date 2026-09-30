@@ -21,7 +21,7 @@ html{scroll-behavior:smooth;background:var(--bg-deep)}
 body{margin:0;background:linear-gradient(180deg,var(--bg-deep),var(--bg) 24%,var(--bg-deep) 100%);color:var(--text);font-family:var(--font-body);font-size:18px;line-height:1.68;overflow-x:hidden}
 body.menu-open{overflow:hidden}
 a{color:inherit;text-decoration:none}
-img{display:block;max-width:100%}
+img{display:block;max-width:100%;height:auto}
 button{font:inherit}
 .no-break{white-space:nowrap}
 ::selection{background:var(--accent);color:#fff}
@@ -3305,5 +3305,38 @@ strong{color:var(--text)}
 @media (min-width:861px){
   .venture--factech img[src="/images/factech-csdip.webp"]{
     object-position:right center;
+  }
+}
+
+
+/* v0.38 — korekta proporcji zdjęć po dodaniu wymiarów intrinsic (mobile) */
+@media (max-width:860px){
+  /* Galerie mają stałą ramę; zdjęcie ją wypełnia bez deformowania obrazu. */
+  .venture__mosaic figure,
+  .venture__media figure{
+    aspect-ratio:16 / 10;
+    height:auto;
+  }
+
+  .venture__mosaic img,
+  .venture__media img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+
+  /* Sekcja „Jak pracuję”: proporcja karty, nie wysokość z atrybutu HTML. */
+  .work-chapter__media img{
+    width:100%;
+    height:auto;
+    aspect-ratio:16 / 10;
+    object-fit:cover;
+  }
+
+  /* Zdjęcie Tulisii zachowuje responsywną wysokość i istniejący kadr. */
+  .beyond__photo img{
+    width:100%;
+    height:auto;
+    object-fit:cover;
   }
 }
