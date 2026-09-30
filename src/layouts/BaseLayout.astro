@@ -8,6 +8,9 @@ const canonicalUrl = canonical.toString();
 const socialImage = new URL('/images/hero-damian.webp', Astro.site).toString();
 const personImage = new URL('/images/about-damian.webp', Astro.site).toString();
 const sameAs = [site.linkedin].filter(Boolean);
+const buildBranch = process.env.WORKERS_CI_BRANCH;
+const isPreviewBuild = Boolean(buildBranch && buildBranch !== 'main');
+const robotsDirective = isPreviewBuild ? 'noindex, nofollow' : 'index, follow';
 
 const schema = {
   '@context': 'https://schema.org',
@@ -45,6 +48,7 @@ const schema = {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#07111F" />
     <meta name="description" content={description} />
+    <meta name="robots" content={robotsDirective} />
     <link rel="canonical" href={canonicalUrl} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
