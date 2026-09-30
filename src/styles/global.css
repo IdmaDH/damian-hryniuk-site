@@ -2808,7 +2808,7 @@ strong{color:var(--text)}
   .work-chapter,.work-chapter--reverse{grid-template-columns:minmax(0,1fr);gap:26px;padding:36px 0}
   .work-chapter--reverse>div{order:0}
   .work-chapter__media{order:2}
-  .work-chapter__media.is-in-view{border-color:rgba(233,149,89,.45);box-shadow:0 12px 32px rgba(0,0,0,.24),0 0 18px rgba(233,149,89,.06)}
+  .work-chapter__media,.idma__metric{--gallery-trace-progress:0;border-color:rgba(255,255,255,.055)}
   .workstyle__quote{margin-top:24px;padding-left:20px}
 }
 @media (prefers-reduced-motion:reduce){

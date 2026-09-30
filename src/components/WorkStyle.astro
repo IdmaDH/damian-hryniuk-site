@@ -13,11 +13,3 @@ import SectionLabel from './SectionLabel.astro';
     <blockquote class="workstyle__quote reveal">Nie chodzi o&nbsp;to, żeby robić wszystko samemu.<br/><span>Chodzi o&nbsp;to, żeby wiedzieć, co musi się wydarzyć, żeby całość działała.</span></blockquote>
   </div>
 </section>
-
-<script>
-  const media = document.querySelectorAll('.work-chapter__media');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => entry.target.classList.toggle('is-in-view', entry.isIntersecting));
-  }, { threshold: .25 });
-  media.forEach(frame => observer.observe(frame));
-</script>
