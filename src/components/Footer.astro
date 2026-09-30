@@ -1,15 +1,26 @@
----
-import Logo from './Logo.astro';
-import { site } from '../config';
----
 <footer class="footer">
   <div class="shell footer__inner">
-    <Logo />
-    <nav aria-label="Nawigacja w stopce"><a href="#o-mnie">O&nbsp;mnie</a><a href="#przedsiewziecia">Przedsięwzięcia</a><a href="#moja-droga">Historia</a><a href="#kontakt">Kontakt</a></nav>
-    <div class="footer__social">
-      {site.linkedin && <a href={site.linkedin} target="_blank" rel="noreferrer">in</a>}
-      {site.email && <a href={`mailto:${site.email}`}>✉</a>}
-    </div>
+    <a class="footer__logo" href="#top" aria-label="Damian Hryniuk — wróć na początek strony">
+      <img src="/images/Logo%20DH%205%20-%20poziom.png" alt="Damian Hryniuk" width="1207" height="257" />
+    </a>
+
+    <nav class="footer__nav" aria-label="Nawigacja w stopce">
+      <a href="#o-mnie"><span>01</span>O&nbsp;mnie</a>
+      <a href="#przedsiewziecia"><span>02</span>Przedsięwzięcia</a>
+      <a href="#moja-droga"><span>03</span>Moja droga</a>
+      <a href="#jak-pracuje"><span>04</span>Jak pracuję</a>
+      <a href="#poza-biznesem"><span>05</span>Poza biznesem</a>
+      <a href="#kontakt"><span>06</span>Kontakt</a>
+    </nav>
+
+    <a class="footer__top" href="#top" aria-label="Wróć na początek strony">
+      <span>Do góry</span>
+      <i aria-hidden="true">↑</i>
+    </a>
   </div>
-  <div class="shell footer__legal">© {new Date().getFullYear()} Damian Hryniuk</div>
+
+  <div class="shell footer__legal">
+    <span>© {new Date().getFullYear()} Damian Hryniuk</span>
+    <span>Technologia / Biznes / Realizacja</span>
+  </div>
 </footer>

@@ -105,4 +105,86 @@ import { site } from '../config';
       });
     });
   }
+
+
+  /* Mobile: obrys zdjęcia rysuje się wraz z przewijaniem.
+     Dwie połowy startują na środku górnej krawędzi i schodzą symetrycznie
+     po bokach, spotykając się na środku dolnej krawędzi. */
+  const galleryMobile = window.matchMedia('(max-width: 860px)');
+  const galleryCards = [...document.querySelectorAll('[data-venture-card], .work-chapter__media, .idma__metric, .beyond__photo')];
+  const svgNS = 'http://www.w3.org/2000/svg';
+
+  galleryCards.forEach((card) => {
+    if (card.querySelector('.venture-gallery__trace')) return;
+
+    const trace = document.createElementNS(svgNS, 'svg');
+    trace.classList.add('venture-gallery__trace');
+    trace.setAttribute('viewBox', '0 0 100 100');
+    trace.setAttribute('preserveAspectRatio', 'none');
+    trace.setAttribute('aria-hidden', 'true');
+
+    const paths = [
+      'M50 1 H96 Q99 1 99 4 V96 Q99 99 96 99 H50',
+      'M50 1 H4 Q1 1 1 4 V96 Q1 99 4 99 H50'
+    ];
+
+    paths.forEach((d) => {
+      const glow = document.createElementNS(svgNS, 'path');
+      glow.setAttribute('d', d);
+      glow.setAttribute('pathLength', '100');
+      glow.classList.add('venture-gallery__trace-glow');
+      trace.appendChild(glow);
+
+      const line = document.createElementNS(svgNS, 'path');
+      line.setAttribute('d', d);
+      line.setAttribute('pathLength', '100');
+      line.classList.add('venture-gallery__trace-line');
+      trace.appendChild(line);
+    });
+
+    card.appendChild(trace);
+  });
+
+  let galleryTraceFrame = 0;
+  const updateGalleryTraces = () => {
+    galleryTraceFrame = 0;
+
+    galleryCards.forEach((card) => {
+      const paths = card.querySelectorAll('.venture-gallery__trace-line, .venture-gallery__trace-glow');
+
+      if (!galleryMobile.matches) {
+        paths.forEach((path) => { path.style.strokeDashoffset = '100'; });
+        card.style.setProperty('--gallery-trace-progress', '0');
+        return;
+      }
+
+      if (galleryReducedMotion.matches) {
+        paths.forEach((path) => { path.style.strokeDashoffset = '0'; });
+        card.style.setProperty('--gallery-trace-progress', '.32');
+        return;
+      }
+
+      const rect = card.getBoundingClientRect();
+      const viewport = window.innerHeight || document.documentElement.clientHeight;
+      const start = viewport * 0.92;
+      const distance = viewport * 0.70 + Math.min(rect.height * 0.34, 150);
+      const progress = Math.max(0, Math.min(1, (start - rect.top) / distance));
+      const dash = 100 - progress * 100;
+
+      paths.forEach((path) => {
+        path.style.strokeDashoffset = dash.toFixed(2);
+      });
+      card.style.setProperty('--gallery-trace-progress', progress.toFixed(3));
+    });
+  };
+
+  const scheduleGalleryTraces = () => {
+    if (!galleryTraceFrame) galleryTraceFrame = requestAnimationFrame(updateGalleryTraces);
+  };
+
+  updateGalleryTraces();
+  window.addEventListener('scroll', scheduleGalleryTraces, { passive: true });
+  window.addEventListener('resize', scheduleGalleryTraces, { passive: true });
+  galleryMobile.addEventListener('change', scheduleGalleryTraces);
+  galleryReducedMotion.addEventListener('change', scheduleGalleryTraces);
 </script>
