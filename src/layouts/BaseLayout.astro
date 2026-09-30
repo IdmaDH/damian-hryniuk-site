@@ -135,7 +135,10 @@ const schema = {
       if (heroFlow) {
         const flowItems = [...heroFlow.querySelectorAll('[data-flow-item]')];
         const flowLine = heroFlow.querySelector('.hero-final__flow-line');
+        const heroSection = document.querySelector('.hero-final');
         const mobileFlow = window.matchMedia('(max-width: 860px)');
+        let flowScrollRaf = 0;
+
         const setFlowItem = (item) => {
           if (!flowLine) return;
           const lineRect = flowLine.getBoundingClientRect();
@@ -149,23 +152,72 @@ const schema = {
           }
           flowItems.forEach(el => el.classList.toggle('is-active', el === item));
         };
+
         const resetFlow = () => flowItems[0] && setFlowItem(flowItems[0]);
+
+        const updateMobileFlowFromScroll = () => {
+          flowScrollRaf = 0;
+          if (!mobileFlow.matches || !flowLine || !heroSection || !flowItems.length) return;
+
+          const heroRect = heroSection.getBoundingClientRect();
+          const travel = Math.max(1, Math.min(heroSection.offsetHeight * 0.72, window.innerHeight * 0.95));
+          const progress = Math.max(0, Math.min(1, -heroRect.top / travel));
+
+          const lineRect = flowLine.getBoundingClientRect();
+          const firstRect = flowItems[0].getBoundingClientRect();
+          const lastRect = flowItems[flowItems.length - 1].getBoundingClientRect();
+          const startX = firstRect.left - lineRect.left + firstRect.width / 2;
+          const endX = lastRect.left - lineRect.left + lastRect.width / 2;
+          const x = startX + (endX - startX) * progress;
+
+          heroFlow.style.setProperty('--flow-dot-x', `${x.toFixed(2)}px`);
+
+          const activeIndex = Math.min(
+            flowItems.length - 1,
+            Math.max(0, Math.round(progress * (flowItems.length - 1)))
+          );
+          flowItems.forEach((el, index) => el.classList.toggle('is-active', index === activeIndex));
+        };
+
+        const scheduleMobileFlow = () => {
+          if (!flowScrollRaf) flowScrollRaf = requestAnimationFrame(updateMobileFlowFromScroll);
+        };
+
         flowItems.forEach(item => {
-          item.addEventListener('pointerenter', () => setFlowItem(item));
-          item.addEventListener('focus', () => setFlowItem(item));
-          item.addEventListener('click', () => setFlowItem(item));
+          item.addEventListener('pointerenter', () => {
+            if (!mobileFlow.matches) setFlowItem(item);
+          });
+          item.addEventListener('focus', () => {
+            if (!mobileFlow.matches) setFlowItem(item);
+          });
+          item.addEventListener('click', () => {
+            if (!mobileFlow.matches) setFlowItem(item);
+          });
         });
+
         heroFlow.addEventListener('pointerleave', () => {
           if (!mobileFlow.matches) resetFlow();
         });
         heroFlow.addEventListener('focusout', (event) => {
           if (!mobileFlow.matches && !heroFlow.contains(event.relatedTarget)) resetFlow();
         });
+
         resetFlow();
+        updateMobileFlowFromScroll();
+
+        window.addEventListener('scroll', scheduleMobileFlow, { passive: true });
         window.addEventListener('resize', () => {
-          const active = heroFlow.querySelector('[data-flow-item].is-active') || flowItems[0];
-          if (active) setFlowItem(active);
+          if (mobileFlow.matches) {
+            scheduleMobileFlow();
+          } else {
+            const active = heroFlow.querySelector('[data-flow-item].is-active') || flowItems[0];
+            if (active) setFlowItem(active);
+          }
         }, { passive: true });
+        mobileFlow.addEventListener('change', () => {
+          if (mobileFlow.matches) scheduleMobileFlow();
+          else resetFlow();
+        });
       }
 
       const timeline = document.querySelector('[data-timeline]');
