@@ -3298,3 +3298,11 @@ strong{color:var(--text)}
     min-height:648px;
   }
 }
+
+
+/* v0.37 — Factech: na desktopie pokazuj prawą część kadru z szafą sterowniczą */
+@media (min-width:861px){
+  .venture--factech img[src="/images/factech-csdip.webp"]{
+    object-position:right center;
+  }
+}
