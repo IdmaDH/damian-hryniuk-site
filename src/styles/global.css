@@ -3181,3 +3181,56 @@ strong{color:var(--text)}
     margin-top:2px;
   }
 }
+
+
+/* v0.35 — mobile Kontakt: manifest delikatnie wchodzi na zdjęcie z miękkim przejściem */
+@media (max-width:860px){
+  .contact__inner{
+    position:relative;
+    z-index:3;
+  }
+
+  .contact__note{
+    position:relative;
+    z-index:4;
+    max-width:390px;
+    margin-top:30px!important;
+    margin-bottom:-38px!important;
+    padding-left:0;
+    border-left:0;
+    font-size:clamp(1.04rem,4.45vw,1.24rem);
+    line-height:1.4;
+  }
+
+  .contact__note span{
+    display:block;
+    margin-top:3px;
+  }
+
+  .contact::after{
+    background-image:
+      linear-gradient(
+        180deg,
+        #090807 0%,
+        rgba(9,8,7,.94) 7%,
+        rgba(9,8,7,.72) 14%,
+        rgba(9,8,7,.38) 23%,
+        rgba(9,8,7,.12) 32%,
+        transparent 42%
+      ),
+      url('/images/contact-damian.webp');
+    background-size:cover;
+    background-position:center 48%;
+  }
+}
+
+@media (max-width:560px){
+  .contact__note{
+    max-width:94%;
+    margin-bottom:-34px!important;
+  }
+
+  .contact::after{
+    background-position:52% center;
+  }
+}
