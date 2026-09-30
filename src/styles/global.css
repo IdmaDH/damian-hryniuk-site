@@ -3163,3 +3163,21 @@ strong{color:var(--text)}
 .beyond{
   background:linear-gradient(180deg,#0d0d0c 0%,#0c0b0a 100%);
 }
+
+
+/* v0.34 — spokojniejszy manifest kontaktu na mobile */
+@media (max-width:860px){
+  .contact__note{
+    max-width:360px;
+    margin-top:32px!important;
+    padding-left:14px;
+    border-left:1px solid rgba(233,149,89,.34);
+    font-size:clamp(1.02rem,4.4vw,1.22rem);
+    line-height:1.42;
+    letter-spacing:-.01em;
+  }
+  .contact__note span{
+    display:inline-block;
+    margin-top:2px;
+  }
+}
