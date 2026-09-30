@@ -455,14 +455,14 @@ strong{color:var(--text)}
   .display-word{font-size:clamp(2.8rem,14vw,4.7rem)}
   .workstyle__quote{font-size:1.55rem}
 
-  .beyond__photo{margin-inline:-18px;border-radius:0;border-left:0;border-right:0}
+  .beyond__photo{margin-inline:0}
   .beyond__photo img{aspect-ratio:4/3}
   .beyond__photo figcaption{left:18px;bottom:16px;font-size:.65rem}
   .beyond__metric strong{font-size:4.4rem}
   .beyond__quote{font-size:1.45rem}
 
   .contact__inner{padding-top:78px}
-  .contact h2{font-size:clamp(2.7rem,14vw,4.2rem)}
+  .contact h2{font-size:clamp(1.6rem,8.5vw,3rem)}
   .contact::after{height:76svh;min-height:580px;background-position:52% center}
   .footer__inner{grid-template-columns:1fr auto}
   .footer .brand__name{display:block;font-size:.55rem;letter-spacing:.22em}
@@ -2842,4 +2842,19 @@ strong{color:var(--text)}
 
 .contact .button--primary{
   width:max-content;
+}
+
+/* Zdjęcie poza biznesem: ta sama rama i reakcja na scroll co wcześniejsze zdjęcia. */
+.beyond__photo{border-radius:14px;border:1px solid rgba(233,149,89,.18);box-shadow:0 16px 40px rgba(0,0,0,.22);transition:transform .45s ease,border-color .5s ease,box-shadow .5s ease}
+.beyond__photo img{transition:transform .65s cubic-bezier(.22,.8,.25,1)}
+@media (hover:hover) and (pointer:fine){
+  .beyond__photo:hover{transform:translateY(-3px);border-color:rgba(233,149,89,.48);box-shadow:0 20px 44px rgba(0,0,0,.28),0 0 22px rgba(233,149,89,.07)}
+  .beyond__photo:hover img{transform:scale(1.035) translateY(-2px)}
+}
+@media (max-width:860px){
+  .beyond__photo{--gallery-trace-progress:0;border-color:rgba(255,255,255,.055)}
+}
+@media (prefers-reduced-motion:reduce){
+  .beyond__photo,.beyond__photo img{transition:none!important}
+  .beyond__photo:hover,.beyond__photo:hover img{transform:none}
 }
