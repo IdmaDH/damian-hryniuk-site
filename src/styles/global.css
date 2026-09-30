@@ -3234,3 +3234,67 @@ strong{color:var(--text)}
     background-position:52% center;
   }
 }
+
+
+/* v0.36 — wyraźniejsze połączenie manifestu z fotografią na mobile */
+@media (max-width:860px){
+  .contact{
+    overflow:hidden;
+  }
+
+  .contact__inner{
+    overflow:visible;
+  }
+
+  .contact__note{
+    position:relative;
+    z-index:6;
+    max-width:410px;
+    margin-top:30px!important;
+    margin-bottom:-78px!important;
+    padding:0!important;
+    border:0!important;
+    box-shadow:none!important;
+    transform:translateY(34px);
+    font-size:clamp(1.04rem,4.45vw,1.24rem);
+    line-height:1.38;
+    text-shadow:0 2px 16px rgba(0,0,0,.82);
+  }
+
+  .contact__note span{
+    display:block;
+    margin-top:3px;
+  }
+
+  .contact::after{
+    margin-top:-74px;
+    height:calc(72svh + 74px);
+    min-height:694px;
+    background-image:
+      linear-gradient(
+        180deg,
+        #090807 0%,
+        rgba(9,8,7,.98) 8%,
+        rgba(9,8,7,.90) 15%,
+        rgba(9,8,7,.68) 23%,
+        rgba(9,8,7,.38) 31%,
+        rgba(9,8,7,.14) 39%,
+        transparent 49%
+      ),
+      url('/images/contact-damian.webp');
+  }
+}
+
+@media (max-width:560px){
+  .contact__note{
+    max-width:96%;
+    margin-bottom:-72px!important;
+    transform:translateY(30px);
+  }
+
+  .contact::after{
+    margin-top:-68px;
+    height:calc(76svh + 68px);
+    min-height:648px;
+  }
+}
