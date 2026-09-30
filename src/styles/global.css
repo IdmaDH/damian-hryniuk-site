@@ -2435,3 +2435,127 @@ strong{color:var(--text)}
   .section h2,.contact h2,.section h2 span,.contact h2 span,.about__visual img{transition:none!important}
   .section h2:hover,.contact h2:hover,.about__visual img{transform:none}
 }
+
+
+/* Ventures gallery interaction — subtle depth, copper spotlight and staggered reveal */
+.venture-gallery{
+  --gallery-x:50%;
+  --gallery-y:50%;
+  perspective:1200px;
+}
+.venture-gallery figure{
+  --gallery-enter-y:14px;
+  --gallery-hover-y:0px;
+  --gallery-rx:0deg;
+  --gallery-ry:0deg;
+  --gallery-img-x:0px;
+  --gallery-img-y:0px;
+  position:relative;
+  isolation:isolate;
+  opacity:0;
+  transform:
+    translate3d(0,calc(var(--gallery-enter-y) + var(--gallery-hover-y)),0)
+    rotateX(var(--gallery-rx))
+    rotateY(var(--gallery-ry));
+  transform-style:preserve-3d;
+  box-shadow:0 18px 46px rgba(0,0,0,.18);
+  transition:
+    opacity .62s ease,
+    transform .48s cubic-bezier(.22,.8,.25,1),
+    border-color .32s ease,
+    box-shadow .38s ease,
+    filter .38s ease;
+  will-change:transform;
+}
+.venture.is-visible .venture-gallery figure{
+  --gallery-enter-y:0px;
+  opacity:1;
+}
+.venture.is-visible .venture-gallery figure:nth-child(1){transition-delay:.04s}
+.venture.is-visible .venture-gallery figure:nth-child(2){transition-delay:.12s}
+.venture.is-visible .venture-gallery figure:nth-child(3){transition-delay:.20s}
+
+.venture-gallery figure::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  z-index:2;
+  pointer-events:none;
+  opacity:0;
+  background:
+    radial-gradient(260px circle at var(--gallery-x) var(--gallery-y),
+      rgba(255,183,121,.16),
+      rgba(202,103,52,.055) 34%,
+      transparent 68%),
+    linear-gradient(180deg,transparent 58%,rgba(8,6,5,.22) 100%);
+  transition:opacity .34s ease;
+}
+.venture-gallery figure::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  z-index:3;
+  pointer-events:none;
+  border-radius:inherit;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.025),
+    inset 0 -1px 0 rgba(233,149,89,.12);
+  opacity:.72;
+  transition:opacity .32s ease,box-shadow .32s ease;
+}
+.venture-gallery img{
+  transform:scale(1.012) translate3d(var(--gallery-img-x),var(--gallery-img-y),0);
+  transition:transform .62s cubic-bezier(.22,.8,.25,1),filter .42s ease;
+  will-change:transform;
+}
+
+@media (hover:hover) and (pointer:fine){
+  .venture-gallery:hover figure:not(:hover){
+    opacity:.72;
+    filter:saturate(.78) brightness(.84);
+  }
+  .venture-gallery figure:hover{
+    --gallery-hover-y:-7px;
+    z-index:5;
+    border-color:rgba(233,149,89,.44);
+    box-shadow:
+      0 28px 70px rgba(0,0,0,.32),
+      0 0 0 1px rgba(233,149,89,.055),
+      0 0 34px rgba(171,77,34,.10);
+  }
+  .venture-gallery figure:hover::before{opacity:1}
+  .venture-gallery figure:hover::after{
+    opacity:1;
+    box-shadow:
+      inset 0 0 0 1px rgba(255,203,157,.10),
+      inset 0 -2px 0 rgba(233,149,89,.40);
+  }
+  .venture-gallery figure:hover img{
+    transform:scale(1.055) translate3d(var(--gallery-img-x),var(--gallery-img-y),0);
+    filter:saturate(1.04) contrast(1.02);
+  }
+}
+
+@media (max-width:860px){
+  .venture-gallery figure{
+    --gallery-enter-y:10px;
+    box-shadow:0 14px 34px rgba(0,0,0,.18);
+  }
+  .venture-gallery figure::before{
+    opacity:.24;
+    background:
+      linear-gradient(180deg,transparent 68%,rgba(125,55,25,.13) 100%);
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  .venture-gallery figure,
+  .venture-gallery img,
+  .venture-gallery figure::before,
+  .venture-gallery figure::after{
+    transition:none!important;
+    transform:none!important;
+  }
+  .venture-gallery figure{opacity:1!important}
+  .venture-gallery:hover figure:not(:hover){opacity:1;filter:none}
+}
