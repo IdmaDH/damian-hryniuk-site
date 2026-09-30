@@ -2673,3 +2673,11 @@ strong{color:var(--text)}
     object-position:center;
   }
 }
+
+
+/* v0.28 — spójne miedziane wyróżnienia w manifestach i cytatach */
+.journey__manifest span,
+.workstyle__quote span,
+.beyond__quote span{
+  color:var(--accent);
+}
