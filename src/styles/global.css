@@ -2559,3 +2559,80 @@ strong{color:var(--text)}
   .venture-gallery figure{opacity:1!important}
   .venture-gallery:hover figure:not(:hover){opacity:1;filter:none}
 }
+
+
+/* v0.26 — Sektor Kolejowy: pełniejszy kadr TRAKO + delikatna interakcja mobilna galerii */
+@media (min-width:861px){
+  /* Główne zdjęcie TRAKO zawiera ważne elementy przy bocznych krawędziach.
+     Na desktopie pokazujemy cały kadr zamiast przycinać go przez object-fit: cover. */
+  .venture--sektor .venture__media--sticky .media-main{
+    background:#080706;
+  }
+  .venture--sektor .venture__media--sticky .media-main img{
+    object-fit:contain;
+    object-position:center;
+    transform:none;
+  }
+
+  /* Karta nadal reaguje jak pozostałe elementy galerii; stabilny zostaje jedynie sam kadr zdjęcia. */
+  .venture--sektor .venture__media--sticky .media-main:hover img{
+    transform:none;
+    filter:saturate(1.04) contrast(1.02);
+  }
+}
+
+@media (max-width:860px){
+  .venture-gallery figure{
+    -webkit-tap-highlight-color:transparent;
+    touch-action:manipulation;
+  }
+
+  /* Krótka, spokojna reakcja na dotyk — bez imitowania desktopowego tiltu. */
+  .venture-gallery figure:active{
+    transform:translate3d(0,0,0) scale(.986);
+    border-color:rgba(233,149,89,.42);
+    box-shadow:
+      0 12px 30px rgba(0,0,0,.24),
+      0 0 0 1px rgba(233,149,89,.07),
+      0 0 24px rgba(171,77,34,.09);
+  }
+  .venture-gallery figure:active::before{
+    opacity:.72;
+    background:
+      radial-gradient(220px circle at 50% 50%,
+        rgba(255,183,121,.13),
+        rgba(202,103,52,.05) 42%,
+        transparent 72%),
+      linear-gradient(180deg,transparent 62%,rgba(125,55,25,.15) 100%);
+  }
+  .venture-gallery figure:active::after{
+    opacity:1;
+    box-shadow:
+      inset 0 0 0 1px rgba(255,203,157,.09),
+      inset 0 -2px 0 rgba(233,149,89,.32);
+  }
+  .venture-gallery figure:active img{
+    transform:scale(1.026);
+    filter:saturate(1.035) contrast(1.015);
+  }
+
+  /* Po wejściu galerii w ekran pojawia się jednorazowe, bardzo subtelne ciepłe podświetlenie. */
+  .venture.is-visible .venture-gallery figure::before{
+    animation:venture-gallery-mobile-glow .9s ease-out both;
+  }
+  .venture.is-visible .venture-gallery figure:nth-child(1)::before{animation-delay:.08s}
+  .venture.is-visible .venture-gallery figure:nth-child(2)::before{animation-delay:.16s}
+  .venture.is-visible .venture-gallery figure:nth-child(3)::before{animation-delay:.24s}
+}
+
+@keyframes venture-gallery-mobile-glow{
+  0%{opacity:.12}
+  42%{opacity:.48}
+  100%{opacity:.24}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .venture.is-visible .venture-gallery figure::before{animation:none!important}
+  .venture-gallery figure:active{transform:none!important}
+  .venture-gallery figure:active img{transform:none!important}
+}
