@@ -6,7 +6,7 @@ import SectionLabel from './SectionLabel.astro';
     <SectionLabel number="01" label="O MNIE" />
     <div class="about__grid">
       <div class="about__copy reveal">
-        <h2>Technologia, biznes, realizacja.</h2>
+        <h2><span>Technologia</span>, biznes, realizacja.</h2>
         <p class="about__lead">Moja historia z technologią zaczęła się na długo przed założeniem pierwszej firmy. Dorastałem w małej miejscowości, a już jako nastolatek tworzyłem pierwsze strony internetowe i poznawałem możliwości, jakie daje internet.</p>
         <div class="about__story">
           <div class="about__chapter">
@@ -35,3 +35,43 @@ import SectionLabel from './SectionLabel.astro';
     </div>
   </div>
 </section>
+
+<script>
+  const section = document.querySelector<HTMLElement>('.about');
+  const frame = section?.querySelector<HTMLElement>('.about__visual figure');
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const pointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+  if (section && frame) {
+    let pending = 0;
+    let x = 0;
+    let y = 0;
+    const update = () => {
+      pending = 0;
+      if (motion.matches) {
+        frame.style.removeProperty('--about-scroll');
+        frame.style.removeProperty('--about-x');
+        frame.style.removeProperty('--about-y');
+        return;
+      }
+      const rect = section.getBoundingClientRect();
+      const progress = Math.max(-1, Math.min(1, (window.innerHeight / 2 - rect.top - rect.height / 2) / ((window.innerHeight + rect.height) / 2)));
+      frame.style.setProperty('--about-scroll', `${progress * 8}px`);
+      frame.style.setProperty('--about-x', `${pointer.matches ? x : 0}px`);
+      frame.style.setProperty('--about-y', `${pointer.matches ? y : 0}px`);
+    };
+    const schedule = () => { if (!pending) pending = requestAnimationFrame(update); };
+    frame.addEventListener('pointermove', (event) => {
+      if (!pointer.matches || motion.matches) return;
+      const rect = frame.getBoundingClientRect();
+      x = (event.clientX - rect.left) / rect.width * 6 - 3;
+      y = (event.clientY - rect.top) / rect.height * 6 - 3;
+      schedule();
+    });
+    frame.addEventListener('pointerleave', () => { x = 0; y = 0; schedule(); });
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule, { passive: true });
+    motion.addEventListener('change', schedule);
+    pointer.addEventListener('change', schedule);
+    update();
+  }
+</script>

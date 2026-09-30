@@ -2402,3 +2402,36 @@ strong{color:var(--text)}
 /* Czytelne etykiety na miedzianych tłach. */
 ::selection{background:#e99559;color:#15100d}
 .button--primary{color:#15100d}
+
+/* Subtelna reakcja nagłówków jak w hero; ruch zdjęcia pozostaje w jego kadrze. */
+.section h2,.contact h2{
+  transition:transform .34s cubic-bezier(.22,.8,.25,1),text-shadow .34s ease;
+}
+.section h2 span,.contact h2 span{
+  background:linear-gradient(180deg,#ffc08a 0%,#ee9b60 29%,#c66d3c 61%,#7c4024 100%);
+  background-size:140% 140%;
+  background-position:0% 50%;
+  color:transparent;
+  -webkit-background-clip:text;
+  background-clip:text;
+  transition:background-position .58s cubic-bezier(.22,.8,.25,1),text-shadow .34s ease,filter .34s ease;
+}
+.about__visual img{
+  transform:translate3d(var(--about-x,0px),calc(var(--about-scroll,0px) + var(--about-y,0px)),0) scale(1.06);
+  transition:transform .35s ease-out;
+}
+@media (hover:hover) and (pointer:fine){
+  .section h2:hover,.contact h2:hover{
+    transform:translateY(-2px);
+    text-shadow:0 10px 26px rgba(255,255,255,.04);
+  }
+  .section h2:hover span,.contact h2:hover span{
+    background-position:100% 50%;
+    text-shadow:0 14px 36px rgba(191,94,45,.24);
+    filter:drop-shadow(0 0 14px rgba(232,145,84,.12));
+  }
+}
+@media (prefers-reduced-motion:reduce){
+  .section h2,.contact h2,.section h2 span,.contact h2 span,.about__visual img{transition:none!important}
+  .section h2:hover,.contact h2:hover,.about__visual img{transform:none}
+}
