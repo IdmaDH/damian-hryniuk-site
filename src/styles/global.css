@@ -2681,3 +2681,65 @@ strong{color:var(--text)}
 .beyond__quote span{
   color:var(--accent);
 }
+
+
+/* v0.29 — mobilny obrys galerii rysowany w rytmie scrolla */
+.venture-gallery__trace{
+  display:none;
+}
+
+@media (max-width:860px){
+  .venture-gallery figure{
+    --gallery-trace-progress:0;
+  }
+
+  .venture-gallery__trace{
+    position:absolute;
+    inset:0;
+    z-index:5;
+    display:block;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    overflow:visible;
+  }
+
+  .venture-gallery__trace-line,
+  .venture-gallery__trace-glow{
+    fill:none;
+    stroke-dasharray:100;
+    stroke-dashoffset:100;
+    vector-effect:non-scaling-stroke;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    transition:stroke-dashoffset .08s linear,opacity .2s ease;
+  }
+
+  .venture-gallery__trace-line{
+    stroke:rgba(239,154,95,.88);
+    stroke-width:1.45;
+    opacity:calc(.34 + var(--gallery-trace-progress) * .56);
+    filter:drop-shadow(0 0 3px rgba(233,149,89,.30));
+  }
+
+  .venture-gallery__trace-glow{
+    stroke:rgba(233,149,89,.20);
+    stroke-width:4;
+    opacity:calc(.06 + var(--gallery-trace-progress) * .18);
+    filter:blur(1.2px);
+  }
+
+  /* Bazowe obramowanie zostaje bardzo ciche, żeby animowany ślad był czytelny. */
+  .venture-gallery figure{
+    border-color:rgba(255,255,255,.055);
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  .venture-gallery__trace-line{
+    opacity:.34!important;
+  }
+  .venture-gallery__trace-glow{
+    opacity:.06!important;
+  }
+}
