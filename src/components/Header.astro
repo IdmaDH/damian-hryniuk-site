@@ -32,12 +32,13 @@
 
 <style>
   .header-logo{display:grid;align-items:center;width:260px;max-width:calc(100% - 64px);flex-shrink:0}
-  .header-logo img{display:block;grid-area:1 / 1;width:100%;height:auto;transition:opacity .2s ease}
-  .header-logo .header-logo__symbol{width:27.2%;opacity:0}
-  .site-header--compact-logo .header-logo__full{opacity:0}
-  .site-header--compact-logo .header-logo__symbol{opacity:1}
+  .header-logo img{display:block;grid-area:1 / 1;width:100%;height:auto;transform-origin:left center;transition:opacity .32s ease,transform .42s cubic-bezier(.22,.8,.25,1)}
+  .header-logo .header-logo__full{opacity:1;transform:none;transition-delay:.12s}
+  .header-logo .header-logo__symbol{width:27.2%;opacity:0;transform:translateY(3px) scale(.96);transition-delay:0s}
+  .site-header--compact-logo .header-logo__full{opacity:0;transform:translateY(-3px) scale(.98);transition-delay:0s}
+  .site-header--compact-logo .header-logo__symbol{opacity:1;transform:none;transition-delay:.12s}
   @media (prefers-reduced-motion:reduce){
-    .header-logo img{transition:none}
+    .header-logo img{transition:none;transform:none;transition-delay:0s}
   }
   @media (min-width:861px) and (max-width:1100px){
     .header-logo{width:210px}
