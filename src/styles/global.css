@@ -3093,3 +3093,55 @@ strong{color:var(--text)}
     transform:none!important;
   }
 }
+
+
+/* v0.32 — portret O mnie jak pozostałe media + czytelniejsza stopka mobile + scroll osi Hero */
+.about__portrait-card{
+  --gallery-trace-progress:0;
+  border-color:rgba(233,149,89,.18)!important;
+  box-shadow:0 16px 40px rgba(0,0,0,.22);
+  transition:
+    transform .45s cubic-bezier(.22,.8,.25,1),
+    border-color .45s ease,
+    box-shadow .45s ease;
+}
+.about__portrait-card img{
+  transition:
+    transform .35s ease-out,
+    filter .45s ease;
+}
+@media (hover:hover) and (pointer:fine){
+  .about__portrait-card:hover{
+    transform:translateY(-3px);
+    border-color:rgba(233,149,89,.48)!important;
+    box-shadow:
+      0 20px 44px rgba(0,0,0,.28),
+      0 0 22px rgba(233,149,89,.07);
+  }
+  .about__portrait-card:hover img{
+    filter:saturate(1.035) contrast(1.02) brightness(1.015);
+  }
+}
+@media (max-width:860px){
+  .about__portrait-card{
+    border-color:rgba(255,255,255,.055)!important;
+  }
+  .hero-final__flow-dot{
+    transition:left .10s linear,box-shadow .25s ease;
+  }
+  .footer__nav a{
+    font-size:.84rem;
+  }
+}
+@media (max-width:560px){
+  .footer__nav a{
+    font-size:.82rem;
+  }
+}
+@media (prefers-reduced-motion:reduce){
+  .about__portrait-card,
+  .about__portrait-card img{
+    transition:none!important;
+    transform:none!important;
+  }
+}
