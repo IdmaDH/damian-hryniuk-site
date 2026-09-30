@@ -1,9 +1,8 @@
----
-import Logo from './Logo.astro';
----
 <header class="site-header" data-header>
   <div class="site-header__inner shell">
-    <Logo />
+    <a class="header-logo" href="#top" aria-label="Damian Hryniuk — strona główna">
+      <img src="/images/Logo%20DH%205%20-%20poziom.png" alt="Damian Hryniuk" width="1207" height="257" />
+    </a>
     <nav class="desktop-nav" aria-label="Główna nawigacja">
       <a href="#o-mnie">O mnie</a>
       <a href="#przedsiewziecia">Przedsięwzięcia</a>
@@ -29,3 +28,14 @@ import Logo from './Logo.astro';
     </div>
   </div>
 </header>
+
+<style>
+  .header-logo{display:block;width:260px;max-width:calc(100% - 64px);flex-shrink:0}
+  .header-logo img{display:block;width:100%;height:auto}
+  @media (min-width:861px) and (max-width:1100px){
+    .header-logo{width:210px}
+  }
+  @media (max-width:860px){
+    .header-logo{width:250px}
+  }
+</style>
