@@ -1,7 +1,8 @@
 <header class="site-header" data-header>
   <div class="site-header__inner shell">
     <a class="header-logo" href="#top" aria-label="Damian Hryniuk — strona główna">
-      <img src="/images/Logo%20DH%205%20-%20poziom.png" alt="Damian Hryniuk" width="1207" height="257" />
+      <img class="header-logo__full" src="/images/Logo%20DH%205%20-%20poziom.png" alt="Damian Hryniuk" width="1207" height="257" />
+      <img class="header-logo__symbol" src="/images/Logo%20DH%205-sygnet.png" alt="" aria-hidden="true" width="782" height="419" />
     </a>
     <nav class="desktop-nav" aria-label="Główna nawigacja">
       <a href="#o-mnie">O mnie</a>
@@ -30,8 +31,14 @@
 </header>
 
 <style>
-  .header-logo{display:block;width:260px;max-width:calc(100% - 64px);flex-shrink:0}
-  .header-logo img{display:block;width:100%;height:auto}
+  .header-logo{display:grid;align-items:center;width:260px;max-width:calc(100% - 64px);flex-shrink:0}
+  .header-logo img{display:block;grid-area:1 / 1;width:100%;height:auto;transition:opacity .2s ease}
+  .header-logo .header-logo__symbol{width:32%;opacity:0}
+  .site-header--compact-logo .header-logo__full{opacity:0}
+  .site-header--compact-logo .header-logo__symbol{opacity:1}
+  @media (prefers-reduced-motion:reduce){
+    .header-logo img{transition:none}
+  }
   @media (min-width:861px) and (max-width:1100px){
     .header-logo{width:210px}
   }

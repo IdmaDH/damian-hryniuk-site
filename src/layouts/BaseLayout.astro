@@ -52,7 +52,10 @@ const schema = {
         document.body.classList.toggle('menu-open', !open);
       });
       links.forEach(a => a.addEventListener('click', closeMenu));
-      const onScroll = () => header?.classList.toggle('site-header--scrolled', window.scrollY > 40);
+      const onScroll = () => {
+        header?.classList.toggle('site-header--scrolled', window.scrollY > 40);
+        header?.classList.toggle('site-header--compact-logo', window.scrollY > 0);
+      };
       onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
 
       const revealObserver = new IntersectionObserver(entries => entries.forEach(e => {
