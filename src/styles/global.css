@@ -2816,3 +2816,30 @@ strong{color:var(--text)}
   .work-chapter__media:hover,.work-chapter__media img,.work-chapter__media:hover img,.idma__metric:hover{transform:none}
   .idma__metric::after{display:none}
 }
+
+
+/* v0.30 — spójne wyróżnienia treści w sekcjach Poza biznesem i Kontakt */
+.beyond__highlight{
+  color:var(--accent);
+  font-weight:600;
+}
+
+.contact__note{
+  margin:38px 0 0!important;
+  padding-left:0;
+  border-left:0;
+  max-width:620px;
+  font-family:var(--font-head);
+  font-size:clamp(1.25rem,2vw,1.9rem);
+  line-height:1.35;
+  color:#f7f4f2!important;
+  letter-spacing:-.015em;
+}
+
+.contact__note span{
+  color:var(--accent);
+}
+
+.contact .button--primary{
+  width:max-content;
+}
