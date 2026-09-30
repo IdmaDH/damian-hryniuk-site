@@ -19,7 +19,7 @@ import { site } from '../config';
         <p>Dziś odpowiadam za operacyjne funkcjonowanie spółki. Moja rola obejmuje zarówno decyzje strategiczne, jak i&nbsp;codzienne prowadzenie działalności — współpracę z&nbsp;kontrahentami, pracownikami i&nbsp;podwykonawcami, organizację zespołów, dobór partnerów oraz nadzór nad realizacją od etapu koncepcji po wykonanie.</p>
         <p>Factech działa na styku technologii, infrastruktury i&nbsp;wykonawstwa. Realizujemy systemy IT i&nbsp;telekomunikacyjne dla kolei, budujemy infrastrukturę techniczną i&nbsp;kablową, prowadzimy kompleksowe realizacje budowlane i&nbsp;fit-out, a&nbsp;także organizujemy konferencje i&nbsp;wydarzenia branżowe, zapewniając ich zaplecze techniczne. Równolegle rozwijamy własne technologie oraz rozwiązania zwiększające bezpieczeństwo.</p>
         <p>Z&nbsp;czasem przeszliśmy od przedsięwzięć cyfrowych i&nbsp;technologicznych do zadań wymagających koordynacji wielu branż, firm i&nbsp;zespołów. Właśnie ta różnorodność jest mi szczególnie bliska.</p>
-        <p class="venture__statement">Moim zadaniem jest sprawić, żeby wszystkie elementy zaczęły działać razem i&nbsp;doprowadziły całość do realnego efektu.</p>
+        <p class="venture__statement">Moim zadaniem jest połączyć te elementy tak, aby wspólnie prowadziły do konkretnego rezultatu.</p>
         <a class="text-link" href={site.factech} target="_blank" rel="noreferrer">fac.tech ↗</a>
       </div>
       <div class="venture__mosaic venture-gallery" data-venture-gallery aria-label="Przykładowe obszary realizacji Factech">
@@ -50,12 +50,10 @@ import { site } from '../config';
       <div class="venture__copy">
         <p class="venture__kicker">IDMA</p>
         <h3>Tu wszystko się zaczęło.</h3>
-        <p>W&nbsp;2016 roku założyłem Idma Damian Hryniuk. Był to naturalny krok wynikający z&nbsp;zainteresowania technologią, tworzeniem stron internetowych i&nbsp;chęci pracy na własny rachunek.</p>
-        <p>Początkowo zajmowałem się przede wszystkim tworzeniem serwisów internetowych i&nbsp;marketingiem, ale zakres moich działań od początku był szerszy. Realizowałem również mniejsze zadania z&nbsp;obszaru infrastruktury IT i&nbsp;instalacji niskoprądowych — obejmujące m.in. budowę, uruchamianie, konfigurację i&nbsp;serwis instalacji sieciowych oraz systemów monitoringu wizyjnego. Prace te wykonywałem dla gospodarstw domowych, małych przedsiębiorstw oraz podmiotów sektora publicznego, w&nbsp;tym szkół.</p>
-        <p>W&nbsp;kolejnych latach rozwijałem działalność w&nbsp;kilku obszarach technologicznych — tworzyłem serwisy internetowe, prowadziłem działania marketingowe, realizowałem zadania związane z&nbsp;infrastrukturą IT i&nbsp;instalacjami niskoprądowymi oraz zapewniałem bieżące wsparcie techniczne. Jednocześnie pomagałem firmom i&nbsp;organizacjom budować ich obecność w&nbsp;internecie. W&nbsp;tym czasie uczestniczyłem w&nbsp;realizacji ponad 100 projektów dla klientów z&nbsp;bardzo różnych branż — od gastronomii, produkcji i&nbsp;handlu, przez edukację, sport i&nbsp;działalność społeczną, po transport, wydarzenia branżowe i&nbsp;portale informacyjne.</p>
-        <p>Idma rozwijała się przede wszystkim dzięki rekomendacjom. Nie opierałem sprzedaży na aktywnym pozyskiwaniu zleceń — kolejne współprace pojawiały się głównie dlatego, że wcześniejsi klienci polecali mnie dalej.</p>
-        <p>Dziś nie rozwijam Idma jako agencji i&nbsp;nie traktuję jej jako głównego kierunku biznesowego. Nadal jednak opiekuję się technicznie wieloma serwisami powstałymi przez te lata, administruję ich zapleczem i&nbsp;dbam o&nbsp;ciągłość działania.</p>
-        <p>Doświadczenia zdobyte przy Idma stały się fundamentem technologicznym, biznesowym i&nbsp;organizacyjnym dla kolejnych etapów mojej działalności — również tych związanych z&nbsp;infrastrukturą, teletechniką i&nbsp;realizacją prac w&nbsp;terenie.</p>
+        <p>Idma Damian Hryniuk założyłem w&nbsp;2016 roku, łącząc zainteresowanie tworzeniem stron internetowych i&nbsp;marketingiem z&nbsp;praktycznymi zadaniami z&nbsp;obszaru infrastruktury IT oraz instalacji niskoprądowych. Obejmowały one m.in. budowę, konfigurację i&nbsp;serwis sieci oraz systemów monitoringu dla gospodarstw domowych, małych firm i&nbsp;podmiotów sektora publicznego.</p>
+        <p>Z&nbsp;czasem zakres działalności poszerzał się, a&nbsp;pojedyncze zlecenia zamieniły się w&nbsp;ponad 100 projektów dla klientów z&nbsp;wielu branż. Idma rozwijała się przede wszystkim dzięki rekomendacjom — kolejne współprace trafiały do mnie głównie z&nbsp;polecenia wcześniejszych klientów.</p>
+        <p>Dziś nie rozwijam Idma jako agencji i&nbsp;nie traktuję jej jako głównego kierunku biznesowego. Nadal opiekuję się technicznie wieloma serwisami powstałymi przez te lata, administruję ich zapleczem i&nbsp;dbam o&nbsp;ciągłość działania.</p>
+        <p>Doświadczenia zdobyte przy Idma stały się fundamentem technologicznym, biznesowym i&nbsp;organizacyjnym dla kolejnych etapów mojej działalności — również tych związanych z&nbsp;infrastrukturą, teletechniką i&nbsp;pracami w&nbsp;terenie.</p>
       </div>
       <div class="idma__metric"><strong>100+</strong><span>projektów i realizacji</span><small>2016 → dziś</small></div>
     </article>
@@ -111,7 +109,7 @@ import { site } from '../config';
      Dwie połowy startują na środku górnej krawędzi i schodzą symetrycznie
      po bokach, spotykając się na środku dolnej krawędzi. */
   const galleryMobile = window.matchMedia('(max-width: 860px)');
-  const galleryCards = [...document.querySelectorAll('[data-venture-card], .work-chapter__media, .idma__metric, .beyond__photo')];
+  const galleryCards = [...document.querySelectorAll('[data-venture-card], .work-chapter__media, .idma__metric, .beyond__photo, .about__portrait-card')];
   const svgNS = 'http://www.w3.org/2000/svg';
 
   galleryCards.forEach((card) => {
