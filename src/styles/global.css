@@ -3340,3 +3340,46 @@ strong{color:var(--text)}
     object-fit:cover;
   }
 }
+
+
+/* v0.39 — test proporcji mobile Hero: mniejsza typografia, wyraźnie większy portret */
+@media (max-width:860px){
+  .hero-final h1{
+    font-size:clamp(2.75rem,13.2vw,3.9rem);
+    margin-bottom:12px;
+  }
+
+  .hero-final h2{
+    font-size:1.08rem;
+    line-height:1.1;
+  }
+
+  .hero-final__portrait{
+    top:36px;
+    right:-24px;
+    width:88%;
+    height:clamp(420px,120vw,540px);
+    max-height:none;
+    mask-image:linear-gradient(to bottom,#000 0%,#000 72%,transparent 100%);
+    -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 72%,transparent 100%);
+  }
+
+  .hero-final__portrait img{
+    height:116%;
+    transform:translate3d(18%,-1%,0);
+  }
+}
+
+@media (max-width:560px){
+  .hero-final__portrait{
+    top:40px;
+    right:-32px;
+    width:92%;
+    height:clamp(420px,122vw,520px);
+  }
+
+  .hero-final__portrait img{
+    height:118%;
+    transform:translate3d(17%,-1%,0);
+  }
+}
