@@ -13,8 +13,8 @@
   --shell: 1280px;
   --radius: 14px;
   --shadow: 0 24px 70px rgba(0,0,0,.34);
-  --font-head: 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-head: 'Manrope Variable', 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'Inter Variable', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;background:var(--bg-deep)}
@@ -251,7 +251,7 @@ strong{color:var(--text)}
 .journey .section-intro{margin-bottom:110px}
 .timeline{position:relative;display:grid;gap:110px;padding:18px 0 30px}
 .timeline__track{position:absolute;top:0;bottom:0;left:50%;width:2px;background:rgba(255,255,255,.10);transform:translateX(-50%)}
-.timeline__track span{display:block;width:100%;height:0;background:linear-gradient(var(--accent),#e99559);box-shadow:0 0 14px rgba(233,149,89,.5)}
+.timeline__track span{display:block;width:100%;height:100%;transform:scaleY(0);transform-origin:top;will-change:transform;background:linear-gradient(var(--accent),#e99559);box-shadow:0 0 14px rgba(233,149,89,.5)}
 .timeline__item{position:relative;width:calc(50% - 74px);max-width:540px}
 .timeline__item--left{justify-self:start;text-align:right}
 .timeline__item--right{justify-self:end;text-align:left}
