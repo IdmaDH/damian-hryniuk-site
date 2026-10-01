@@ -1,4 +1,6 @@
 ---
+import '@fontsource-variable/inter/wght.css';
+import '@fontsource-variable/manrope/wght.css';
 import '../styles/global.css';
 import { site } from '../config';
 
@@ -68,9 +70,6 @@ const schema = {
     <meta name="twitter:image" content={socialImage} />
     <meta name="twitter:image:alt" content="Damian Hryniuk — technologia, biznes, realizacja" />
     <link rel="icon" href="/images/Logo%20SYGNET%20DH%20silver%20150px.png" type="image/png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
     <title>{title}</title>
     <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
   </head>
@@ -264,13 +263,20 @@ const schema = {
       const timeline = document.querySelector('[data-timeline]');
       const progress = document.querySelector('[data-timeline-progress]');
       if (timeline && progress) {
+        let timelineRaf = 0;
         const updateTimeline = () => {
+          timelineRaf = 0;
           const r = timeline.getBoundingClientRect();
           const vh = window.innerHeight;
           const value = Math.max(0, Math.min(1, (vh * 0.6 - r.top) / r.height));
-          progress.style.height = `${value * 100}%`;
+          progress.style.transform = `scaleY(${value})`;
         };
-        updateTimeline(); window.addEventListener('scroll', updateTimeline, { passive: true });
+        const scheduleTimeline = () => {
+          if (!timelineRaf) timelineRaf = requestAnimationFrame(updateTimeline);
+        };
+        scheduleTimeline();
+        window.addEventListener('scroll', scheduleTimeline, { passive: true });
+        window.addEventListener('resize', scheduleTimeline, { passive: true });
       }
     </script>
   </body>
