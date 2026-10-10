@@ -279,6 +279,7 @@ strong{color:var(--text)}
 /* Beyond */
 .beyond{background:linear-gradient(180deg,#0e0d0c,#0d0c0b)}
 .beyond__header{display:grid;grid-template-columns:.95fr 1.05fr;gap:70px;margin-bottom:60px;align-items:end}
+.beyond__header p,.beyond__content p{color:#d7dfeb}
 .beyond__header h2{margin:0}
 .beyond__photo{margin:0;position:relative;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow)}
 .beyond__photo img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:center 45%}
