@@ -3384,3 +3384,22 @@ strong{color:var(--text)}
     transform:translate3d(17%,-1%,0);
   }
 }
+
+
+/* v0.40 — czerwony akcent imienia w Hero */
+.hero-final h1 .hero-final__first-name{
+  color:#e53935;
+  background:none;
+  -webkit-background-clip:initial;
+  background-clip:initial;
+  text-shadow:0 12px 42px rgba(229,57,53,.16);
+}
+@media (hover:hover) and (pointer:fine){
+  .hero-final h1:hover .hero-final__first-name{
+    color:#e53935;
+    background:none;
+    transform:none;
+    text-shadow:0 14px 36px rgba(229,57,53,.22);
+    filter:none;
+  }
+}
